@@ -1,0 +1,11 @@
+.ipynb_checkpoints/
+bin/
+data/
+etc/
+include/
+lib/
+output/
+share/
+
+.envrc
+pyvenv.cfg
