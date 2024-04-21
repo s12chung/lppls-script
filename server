@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# run this command:
-# source server
-
-source ./bin/activate
-jupyter lab

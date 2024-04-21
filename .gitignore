@@ -6,6 +6,9 @@ include/
 lib/
 output/
 share/
+dist/
+build/
+*.egg-info/
 
 .envrc
 pyvenv.cfg
