@@ -1,6 +1,6 @@
 # lppls-script
 
-Simple wrapper around https://github.com/Boulder-Investment-Technologies/lppls to easy get the output.
+Simple wrapper around https://github.com/Boulder-Investment-Technologies/lppls to easily get the output.
 
 
 ## Local Development and Run
@@ -28,5 +28,6 @@ pipx install --force .
 ### Local Run
 
 ```bash
+# this API key only works for BTC/USD
 TWELVE_API_KEY=demo lppls-script "BTC/USD"
 ```

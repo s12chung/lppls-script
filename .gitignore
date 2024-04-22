@@ -4,7 +4,6 @@ data/
 etc/
 include/
 lib/
-output/
 share/
 dist/
 build/
