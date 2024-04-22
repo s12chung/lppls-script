@@ -7,7 +7,7 @@ def download_data(ticker: str, api_key: str, data_path: str) -> None:
         'delimiter': ',',
         'order': 'ASC',
         'interval': '1day',
-        'outputsize': 1095, # 3 years
+        'outputsize': 730, # 2 years for seasonality and efficency
         'symbol': ticker,
         'apikey': api_key
     }
