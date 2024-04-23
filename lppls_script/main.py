@@ -1,13 +1,13 @@
 import requests
 from urllib.parse import urlencode
 
-def download_data(ticker: str, api_key: str, data_path: str) -> None:
+def download_data(ticker: str, api_key: str, data_path: str, opts={}) -> None:
     query = {
         'format': 'CSV',
         'delimiter': ',',
         'order': 'ASC',
         'interval': '1day',
-        'outputsize': 730, # 2 years for seasonality and efficency
+        'outputsize': opts['outputsize'],
         'symbol': ticker,
         'apikey': api_key
     }
@@ -79,16 +79,22 @@ def image_from_html(ticker: str, html_file_path: str, image_path: str) -> None:
 def no_ext_filename(file_path: str) -> str:
     return os.path.splitext(os.path.basename(file_path))[0]
 
-import sys
-import os
+import argparse
 from importlib import resources
+import os
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: lppls-script <ticker>")
-        return
-    
-    ticker = sys.argv[1]
+    parser = argparse.ArgumentParser(description="Log Periodic Power Law Singularity (LPPLS) Model Script")
+
+    parser.add_argument('ticker', type=str, help='Ticker to process data with')
+    parser.add_argument('--data-size', type=int, default= 730, help='Data size (default: 730, ~2 years for seasonality and efficency)')
+
+    args = parser.parse_args()
+    run(args.ticker, {
+        'outputsize': args.data_size
+    })
+
+def run(ticker: str, data_opts={}):
     safe_ticker = ticker.replace('/', '|')
 
     extras_path ="./lppls-extras"
@@ -97,7 +103,7 @@ def main():
     html_path = f"{extras_path}/{safe_ticker}.html"
     image_path = f"./{safe_ticker}.png"
 
-    download_data(ticker, os.environ['TWELVE_API_KEY'], data_path)
+    download_data(ticker, os.environ['TWELVE_API_KEY'], data_path, data_opts)
     os.environ['SAFE_TICKER'] = safe_ticker
     with resources.open_binary(__name__, 'run.ipynb') as file:
         export_notebook(file, html_path)
