@@ -1,13 +1,11 @@
 .ipynb_checkpoints/
 bin/
-data/
-etc/
+build/
 include/
 lib/
-share/
-dist/
-build/
 *.egg-info/
 
 .envrc
 pyvenv.cfg
+
+lppls-extras/

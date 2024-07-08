@@ -11,12 +11,13 @@ setup(
     },
     include_package_data=True,
     package_data={
-        'lppls-script': ['run.ipynb'],
+        'lppls_script': ['run.ipynb'],
     },
     install_requires=[
         'lppls',
         'nbconvert',
         'nbformat',
+        'ipykernel',
         'requests'
     ],
 )
