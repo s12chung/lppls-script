@@ -107,8 +107,9 @@ def run(ticker: str, data_opts={}):
     os.environ['SAFE_TICKER'] = safe_ticker
     with resources.open_binary(__name__, 'run.ipynb') as file:
         export_notebook(file, html_path)
-    image_from_html(ticker, html_path, image_path)
 
+    os.path.exists(image_path) and os.remove(image_path)
+    image_from_html(ticker, html_path, image_path)
     os.system(f"open \"{image_path}\"")
 
 if __name__ == '__main__':
